@@ -19,7 +19,7 @@ def main():
     resource = boto3.resource('dynamodb', aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
                               aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'), region_name=os.getenv('AWS_REGION'))
 
-    table = resource.Table(os.getenv('DYNAMODB_TABLE_NAME'))
+    table = resource.Table(os.getenv('DYNAMODB_DELETE_TABLE'))
     item = table.get_item(Key={'cam': BASE_NAME})['Item']
     if item['deleteRequired'] is True:
         call([REMOVE_SCRIPT])
